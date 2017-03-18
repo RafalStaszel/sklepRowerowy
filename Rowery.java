@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Rowery {
+public class Rowery implements Serializable{
 	private String marka;
 	private String model;
 	private int rozmiar;
@@ -43,9 +44,7 @@ public class Rowery {
 	public void setCenaZ(double cenaZ) {
 		this.cenaZ = cenaZ;
 	}
-	/*public void tworzenieRoweru(String marka, String model, int rozmiar, double cenaS, double cenaZ){
-		
-	}*/
+	
 	@Override
 	public String toString() {
 		return "Rowery marka = " + marka + ", model = " + model + ", rozmiar = " + rozmiar + ", cenaZ = " + cenaZ + ", cenaS = "
