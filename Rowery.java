@@ -46,5 +46,12 @@ public class Rowery {
 	/*public void tworzenieRoweru(String marka, String model, int rozmiar, double cenaS, double cenaZ){
 		
 	}*/
+	@Override
+	public String toString() {
+		return "Rowery marka = " + marka + ", model = " + model + ", rozmiar = " + rozmiar + ", cenaZ = " + cenaZ + ", cenaS = "
+				+ cenaS ;
+	}
+	
+	
 
 }

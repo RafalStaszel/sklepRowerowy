@@ -1,14 +1,32 @@
+import java.awt.EventQueue;
 import java.util.Scanner;
+
+
 
 public class Zaplecze {
 
 	public static void main(String[] args) {
-		Magazyn magazyn = new Magazyn();
+		
 	
-Scanner odczyt = new Scanner(System.in);
-System.out.println("Wpisz liczbe 1,2,3");
-int wybor = odczyt.nextInt();
-magazyn.wyborRoweru(wybor);
+
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Gui gui = new Gui();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	}
+	
+	
+	
+	
+	
 	}
 
-}
+
