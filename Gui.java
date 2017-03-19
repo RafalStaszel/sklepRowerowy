@@ -1,11 +1,15 @@
-import java.awt.EventQueue;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -17,9 +21,9 @@ public class Gui extends JFrame implements ActionListener {
 	private JMenu jmPlik, jmOprogramie;
 	private JMenuItem mZapis, mWyjscie, mOdczyt, mOdczytZKlasy;
 	private JTextArea textArea;
+	private JComboBox kolorKombo;
 	JButton btnRowery, btnCzysc;
 	Magazyn magazyn = new Magazyn();
-	
 
 	public Gui() {
 		frame = new JFrame();
@@ -27,6 +31,7 @@ public class Gui extends JFrame implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		frame.setTitle("Sklep Rowerowy");
 
 		jmenu = new JMenuBar();
 		frame.setJMenuBar(jmenu);
@@ -54,15 +59,23 @@ public class Gui extends JFrame implements ActionListener {
 		btnRowery.setBounds(10, 60, 100, 20);
 		frame.getContentPane().add(btnRowery);
 		btnRowery.addActionListener(this);
-		
+
 		btnCzysc = new JButton("Wyczyœæ");
 		btnCzysc.setBounds(200, 60, 100, 20);
 		frame.getContentPane().add(btnCzysc);
 		btnCzysc.addActionListener(this);
 
 		textArea = new JTextArea();
-		textArea.setBounds(50, 300, 800, 300);
+		textArea.setBounds(50, 200, 800, 300);
 		frame.getContentPane().add(textArea);
+		
+		kolorKombo = new JComboBox();
+		kolorKombo.setBounds(750, 10, 100, 20);
+		frame.getContentPane().add(kolorKombo);
+		kolorKombo.addItem("Metal");
+		kolorKombo.addItem("Nimbus");
+		kolorKombo.addItem("Windows");
+		kolorKombo.addActionListener(this);
 
 	}
 
@@ -70,18 +83,49 @@ public class Gui extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object ae = e.getSource();
 		if (ae == btnRowery) {
-			textArea.setText("");
 			textArea.append(magazyn.stackPokazRowery());
-
 		} else if (ae == mZapis) {
 			magazyn.zapis();
 		} else if (ae == mOdczyt) {
 			magazyn.wstawRowery();
-		} else if (ae == mOdczytZKlasy){;
-		magazyn.odczytZKlasy();
+		} else if (ae == mOdczytZKlasy) {
+			;
+			magazyn.odczytZKlasy();
+		} else if (ae == btnCzysc) {
+			textArea.setText(" ");
+		} else if(ae== kolorKombo){
+			String kolor = kolorKombo.getSelectedItem().toString();
+			if(kolor.equals("Metal")){
+				try {
+					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+						| UnsupportedLookAndFeelException eX) {
+					
+					eX.printStackTrace();
+				}
+				SwingUtilities.updateComponentTreeUI(frame);
+			}				
+			else if(kolor.equals("Nimbus")){
+				try {
+					UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+						| UnsupportedLookAndFeelException eX) {
+				
+					eX.printStackTrace();
+				}
+				SwingUtilities.updateComponentTreeUI(frame);
+			}				
+			else if(kolor.equals("Windows")){
+				try {
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+						| UnsupportedLookAndFeelException eX) {
+					
+					eX.printStackTrace();
+				}
+				SwingUtilities.updateComponentTreeUI(frame);
+			}
+								
+		}
 	}
-	else if(ae==btnCzysc){
-		textArea.setText(" ");
-	}
-}
 }
