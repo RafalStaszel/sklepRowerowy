@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
 public class Rowery implements Serializable{
+	
 	private String marka;
 	private String model;
 	private int rozmiar;
@@ -13,7 +14,9 @@ public class Rowery implements Serializable{
 		this.cenaZ = j;
 		this.cenaS = k;
 		
+		
 	}
+
 	public String getMarka() {
 		return marka;
 	}

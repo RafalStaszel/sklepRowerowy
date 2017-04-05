@@ -31,6 +31,7 @@ public class Magazyn {
 			while (iterator.hasNext())
 				System.out.print(iterator.next().toString() + " \n");
 			System.out.println("Ilosc rowerów w arrayu - "+ roweryL.size());
+			
 
 			ois.close();
 
@@ -61,13 +62,7 @@ public class Magazyn {
 		String wyslijSO = "\n"+roweryL.stream().map(Object::toString).collect(Collectors.joining(", \n"));
 		return wyslijSO;
 	}
-/*
-	public String stackPokazRowery2() {
-		int j = roweryL.size();
-		String wyslijSO = "rozmiar listy" + roweryL.size();
-		return wyslijSO;
-	}
-*/
+
 	public void zapis() {
 		try (FileOutputStream fos = new FileOutputStream(plik)) {
 			ObjectOutputStream obs = new ObjectOutputStream(fos);
@@ -89,6 +84,7 @@ public class Magazyn {
 	}
 
 	public void usunRower(int i) {
+		
 		roweryL.remove(i);
 	}
 
@@ -100,6 +96,18 @@ public class Magazyn {
 		roweryL.add(nwR.getRowerX());
 
 		System.out.println("Lista rowerow to " + roweryL.size());
+	}
+
+	public void dodajRower2(String inputValue) {
+		
+		String[] pociety = inputValue.split(" ");
+		String marka = pociety[0];
+		String model = pociety[1];
+		int rozmiar = Integer.valueOf(pociety[2]);
+		double cenaZ = Double.valueOf(pociety[3]);
+		double cenaS = Double.parseDouble(pociety[4].replaceAll(",", "."));
+		roweryL.add(new Rowery(marka,model,rozmiar,cenaZ,cenaS));
+		
 	}
 
 }

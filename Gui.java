@@ -13,6 +13,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class Gui extends JFrame implements ActionListener {
 
@@ -22,7 +23,7 @@ public class Gui extends JFrame implements ActionListener {
 	private JMenuItem mZapis, mWyjscie, mOdczyt, mOdczytZKlasy;
 	private JTextArea textArea;
 	private JComboBox kolorKombo;
-	private JButton btnRowery, btnCzysc, btnNowyRower;
+	private JButton btnRowery, btnCzysc, btnNowyRower, btnUsunRower, btnNowyRower2;
 
 	public Gui() {
 		initializeGUI();
@@ -73,6 +74,16 @@ public class Gui extends JFrame implements ActionListener {
 		btnNowyRower.setBounds(400, 60, 150, 20);
 		frame.getContentPane().add(btnNowyRower);
 		btnNowyRower.addActionListener(this);
+		
+		btnNowyRower2 = new JButton("Nowy Rower ver 2");
+		btnNowyRower2.setBounds(400, 90, 150, 20);
+		frame.getContentPane().add(btnNowyRower2);
+		btnNowyRower2.addActionListener(this);
+		
+		btnUsunRower = new JButton("Usuñ rower");
+		btnUsunRower.setBounds(600, 60, 150, 20);
+		frame.getContentPane().add(btnUsunRower);
+		btnUsunRower.addActionListener(this);
 
 		textArea = new JTextArea();
 		textArea.setBounds(50, 200, 800, 300);
@@ -138,6 +149,19 @@ public class Gui extends JFrame implements ActionListener {
 			OknoWprowadzaniaRoweru nw = new OknoWprowadzaniaRoweru();
 			nw.noweOkno();
 
+		}
+		
+		else if (ae == btnNowyRower2) {
+			String inputValue = JOptionPane.showInputDialog(frame, "Wpisz rower: Marka model rozmiar cenaZ cenaS");
+			magazyn.dodajRower2(inputValue);
+
+		}
+		else if (ae == btnUsunRower ) {
+			String inputValue = JOptionPane.showInputDialog(frame, "Jaki rower usunac?");
+			System.out.println(inputValue);
+			int i = Integer.parseInt(inputValue)-1;
+			
+			magazyn.usunRower(i);
 		}
 	}
 
