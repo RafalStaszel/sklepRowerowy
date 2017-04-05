@@ -5,7 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.channels.NonWritableChannelException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Magazyn {
@@ -13,7 +16,8 @@ public class Magazyn {
 	Rowery rower1;
 	Rowery rower2;
 	Rowery rower3;
-	ArrayList<Rowery> rowery = new ArrayList<>();
+	static ArrayList<Rowery> roweryL = new ArrayList<>();
+	OknoWprowadzaniaRoweru nwR = new OknoWprowadzaniaRoweru();
 
 	File plik = new File("plik.txt");
 
@@ -21,8 +25,13 @@ public class Magazyn {
 		try (FileInputStream fis = new FileInputStream(plik)) {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
-			
-			rowery = (ArrayList<Rowery>) ois.readObject();
+			roweryL = (ArrayList<Rowery>) ois.readObject();
+
+			Iterator<Rowery> iterator = roweryL.iterator();
+			while (iterator.hasNext())
+				System.out.print(iterator.next().toString() + " \n");
+			System.out.println("Ilosc rowerów w arrayu - "+ roweryL.size());
+
 			ois.close();
 
 		} catch (FileNotFoundException e) {
@@ -42,22 +51,28 @@ public class Magazyn {
 		Rowery rower1 = new Rowery("Merida", "Lite901", 56, 2500, 3299.99);
 		Rowery rower2 = new Rowery("Kands", "Maestro", 28, 900, 1199.99);
 		Rowery rower3 = new Rowery("Author", "A5500", 62, 3500, 4499.99);
-		rowery.add(rower1);
-		rowery.add(rower2);
-		rowery.add(rower3);
+		roweryL.add(rower1);
+		roweryL.add(rower2);
+		roweryL.add(rower3);
 	}
 
 	public String stackPokazRowery() {
 
-		String wyslijSO = rowery.stream().map(Object::toString).collect(Collectors.joining(", \n"));
+		String wyslijSO = "\n"+roweryL.stream().map(Object::toString).collect(Collectors.joining(", \n"));
 		return wyslijSO;
 	}
-
+/*
+	public String stackPokazRowery2() {
+		int j = roweryL.size();
+		String wyslijSO = "rozmiar listy" + roweryL.size();
+		return wyslijSO;
+	}
+*/
 	public void zapis() {
 		try (FileOutputStream fos = new FileOutputStream(plik)) {
 			ObjectOutputStream obs = new ObjectOutputStream(fos);
 
-			obs.writeObject(rowery);
+			obs.writeObject(roweryL);
 
 			obs.close();
 
@@ -72,4 +87,19 @@ public class Magazyn {
 		}
 
 	}
+
+	public void usunRower(int i) {
+		roweryL.remove(i);
+	}
+
+	
+
+	public void dodajRower() {
+
+		System.out.println("Lista rowerow to " + roweryL.size());
+		roweryL.add(nwR.getRowerX());
+
+		System.out.println("Lista rowerow to " + roweryL.size());
+	}
+
 }

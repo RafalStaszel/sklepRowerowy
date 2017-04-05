@@ -47,7 +47,7 @@ public class Rowery implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Rowery marka = " + marka + ", model = " + model + ", rozmiar = " + rozmiar + ", cenaZ = " + cenaZ + ", cenaS = "
+		return  "Rowery marka = " + marka + ", model = " + model + ", rozmiar = " + rozmiar + ", cenaZ = " + cenaZ + ", cenaS = "
 				+ cenaS ;
 	}
 	

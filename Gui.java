@@ -22,10 +22,14 @@ public class Gui extends JFrame implements ActionListener {
 	private JMenuItem mZapis, mWyjscie, mOdczyt, mOdczytZKlasy;
 	private JTextArea textArea;
 	private JComboBox kolorKombo;
-	JButton btnRowery, btnCzysc;
-	Magazyn magazyn = new Magazyn();
+	private JButton btnRowery, btnCzysc, btnNowyRower;
 
 	public Gui() {
+		initializeGUI();
+	}
+
+	private void initializeGUI() {
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 900, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,10 +69,15 @@ public class Gui extends JFrame implements ActionListener {
 		frame.getContentPane().add(btnCzysc);
 		btnCzysc.addActionListener(this);
 
+		btnNowyRower = new JButton("Nowy Rower");
+		btnNowyRower.setBounds(400, 60, 150, 20);
+		frame.getContentPane().add(btnNowyRower);
+		btnNowyRower.addActionListener(this);
+
 		textArea = new JTextArea();
 		textArea.setBounds(50, 200, 800, 300);
 		frame.getContentPane().add(textArea);
-		
+
 		kolorKombo = new JComboBox();
 		kolorKombo.setBounds(750, 10, 100, 20);
 		frame.getContentPane().add(kolorKombo);
@@ -81,6 +90,7 @@ public class Gui extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Magazyn magazyn = new Magazyn();
 		Object ae = e.getSource();
 		if (ae == btnRowery) {
 			textArea.append(magazyn.stackPokazRowery());
@@ -93,39 +103,50 @@ public class Gui extends JFrame implements ActionListener {
 			magazyn.odczytZKlasy();
 		} else if (ae == btnCzysc) {
 			textArea.setText(" ");
-		} else if(ae== kolorKombo){
+		} else if (ae == kolorKombo) {
 			String kolor = kolorKombo.getSelectedItem().toString();
-			if(kolor.equals("Metal")){
+			if (kolor.equals("Metal")) {
 				try {
 					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 						| UnsupportedLookAndFeelException eX) {
-					
+
 					eX.printStackTrace();
 				}
 				SwingUtilities.updateComponentTreeUI(frame);
-			}				
-			else if(kolor.equals("Nimbus")){
+			} else if (kolor.equals("Nimbus")) {
 				try {
 					UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 						| UnsupportedLookAndFeelException eX) {
-				
+
 					eX.printStackTrace();
 				}
 				SwingUtilities.updateComponentTreeUI(frame);
-			}				
-			else if(kolor.equals("Windows")){
+			} else if (kolor.equals("Windows")) {
 				try {
 					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
 						| UnsupportedLookAndFeelException eX) {
-					
+
 					eX.printStackTrace();
 				}
 				SwingUtilities.updateComponentTreeUI(frame);
 			}
-								
+
+		} else if (ae == btnNowyRower) {
+			OknoWprowadzaniaRoweru nw = new OknoWprowadzaniaRoweru();
+			nw.noweOkno();
+
 		}
 	}
+
+	public void sterujaca() {
+		OknoWprowadzaniaRoweru nw = new OknoWprowadzaniaRoweru();
+		Magazyn magazyn = new Magazyn();
+
+		magazyn.dodajRower();
+
+	}
+
 }
