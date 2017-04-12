@@ -17,6 +17,7 @@ public class Magazyn {
 	Rowery rower1; // do usuniecia
 	Rowery rower2; // do usuniecia
 	Rowery rower3; // do usuniecia
+	
 	static ArrayList<Rowery> roweryL = new ArrayList<>();
 	OknoWprowadzaniaRoweru nwR = new OknoWprowadzaniaRoweru();
 
@@ -59,7 +60,7 @@ public class Magazyn {
 
 	public String stackPokazRowery() {
 
-		String wyslijSO = "\n" + roweryL.stream().map(Object::toString).collect(Collectors.joining(", \n"));
+		String wyslijSO = "\n"+ roweryL.stream().map(Object::toString).collect(Collectors.joining(" , \n"));
 		return wyslijSO;
 	}
 
