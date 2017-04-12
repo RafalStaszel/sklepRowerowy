@@ -1,3 +1,4 @@
+package paczka.glowna;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +21,7 @@ public class Gui extends JFrame implements ActionListener {
 	private JFrame frame;
 	private JMenuBar jmenu;
 	private JMenu jmPlik, jmOprogramie;
-	private JMenuItem mZapis, mWyjscie, mOdczyt, mOdczytZKlasy;
+	private JMenuItem mZapis, mWyjscie, mOdczyt, mOdczytZKlasy, mOdczytZBazy, mZapisDoBazy;
 	private JTextArea textArea;
 	private JComboBox kolorKombo;
 	private JButton btnRowery, btnCzysc, btnNowyRower, btnUsunRower, btnNowyRower2;
@@ -44,17 +45,27 @@ public class Gui extends JFrame implements ActionListener {
 		jmPlik = new JMenu("Plik");
 		jmenu.add(jmPlik);
 
+		mOdczyt = new JMenuItem("Odczyt");
+		jmPlik.add(mOdczyt);
+		mOdczyt.addActionListener(this);
+		
 		mZapis = new JMenuItem("Zapis");
 		jmPlik.add(mZapis);
 		mZapis.addActionListener(this);
 
-		mOdczyt = new JMenuItem("Odczyt");
-		jmPlik.add(mOdczyt);
-		mOdczyt.addActionListener(this);
-
 		mOdczytZKlasy = new JMenuItem("Odczyt z klasy");
 		jmPlik.add(mOdczytZKlasy);
 		mOdczytZKlasy.addActionListener(this);
+		
+		mOdczytZBazy = new JMenuItem("Odczyt z bazy");
+		jmPlik.add(mOdczytZBazy);
+		mOdczytZBazy.addActionListener(this);
+		
+		
+		mZapisDoBazy = new JMenuItem("Zapis do bazy");
+		jmPlik.add(mZapisDoBazy);
+		mZapisDoBazy.addActionListener(this);
+		
 
 		mWyjscie = new JMenuItem("Wyjscie");
 		jmPlik.addSeparator();
@@ -144,7 +155,7 @@ public class Gui extends JFrame implements ActionListener {
 				}
 				SwingUtilities.updateComponentTreeUI(frame);
 			}
-
+			
 		} else if (ae == btnNowyRower) {
 			OknoWprowadzaniaRoweru nw = new OknoWprowadzaniaRoweru();
 			nw.noweOkno();
@@ -163,7 +174,21 @@ public class Gui extends JFrame implements ActionListener {
 			
 			magazyn.usunRower(i);
 		}
+		else if (ae == mOdczytZBazy){
+			
+		}
+		else if (ae == mZapisDoBazy){
+			
+		}
+		else if (ae == mWyjscie){
+			frame.dispose();
+		}
 	}
+	
+	
+	
+	
+	
 
 	public void sterujaca() {
 		OknoWprowadzaniaRoweru nw = new OknoWprowadzaniaRoweru();

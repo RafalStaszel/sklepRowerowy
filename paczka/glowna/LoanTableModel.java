@@ -1,3 +1,4 @@
+package paczka.glowna;
 
 
 import javax.swing.table.AbstractTableModel;

@@ -1,3 +1,4 @@
+package paczka.glowna;
 import java.io.Serializable;
 
 public class Rowery implements Serializable{
@@ -7,12 +8,12 @@ public class Rowery implements Serializable{
 	private int rozmiar;
 	private double cenaZ;
 	private double cenaS;
-	public Rowery(String string, String string2, int i, double j, double k) {
-		this.marka = string;
-		this.model = string2;
-		this.rozmiar = i;
-		this.cenaZ = j;
-		this.cenaS = k;
+	public Rowery(String marka, String model, int rozmiar, double cenaZ, double cenaS) {
+		this.marka = marka;
+		this.model = model;
+		this.rozmiar = rozmiar;
+		this.cenaZ = cenaZ;
+		this.cenaS = cenaS;
 		
 		
 	}
